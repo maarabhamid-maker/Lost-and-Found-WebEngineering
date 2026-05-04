@@ -39,14 +39,15 @@ export function SignIn() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-secondary/30 to-background flex items-center justify-center px-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen bg-[url('/Uni2.jpg')] bg-cover bg-center flex items-center justify-center px-4">
+      <div className="absolute inset-0 bg-black/40" />
+      <Card className="w-full max-w-md relative z-10 bg-white/10 border border-white/20 backdrop-blur-lg shadow-2xl">
         <CardHeader className="space-y-2">
           <div className="flex items-center justify-center mb-4">
-            <Heart className="w-8 h-8 text-primary" />
+            <Heart className="w-8 h-8 text-cyan-300" />
           </div>
-          <CardTitle className="text-2xl text-center font-serif">Welcome Back</CardTitle>
-          <CardDescription className="text-center">
+          <CardTitle className="text-2xl text-center font-serif text-white">Welcome Back</CardTitle>
+          <CardDescription className="text-center text-slate-100">
             Sign in to your Lost & Found Hub account
           </CardDescription>
         </CardHeader>
@@ -54,7 +55,7 @@ export function SignIn() {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-sm font-medium">Email</label>
+              <label className="text-sm font-medium text-white">Email</label>
               <Input
                 type="email"
                 placeholder="your@email.com"
@@ -62,11 +63,12 @@ export function SignIn() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={loading}
+                className="bg-white/10 border border-white/20 text-white placeholder:text-white/50"
               />
             </div>
 
             <div>
-              <label className="text-sm font-medium">Password</label>
+              <label className="text-sm font-medium text-white">Password</label>
               <Input
                 type="password"
                 placeholder="••••••••"
@@ -74,21 +76,22 @@ export function SignIn() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 disabled={loading}
+                className="bg-white/10 border border-white/20 text-white placeholder:text-white/50"
               />
             </div>
 
             <Button
               type="submit"
-              className="w-full"
+              className="w-full bg-teal-500 hover:bg-teal-600 text-white"
               disabled={loading}
             >
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
 
-          <div className="mt-4 text-center text-sm">
+          <div className="mt-4 text-center text-sm text-white">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-primary hover:underline font-semibold">
+            <Link to="/signup" className="text-teal-300 hover:text-teal-200 font-semibold">
               Sign up
             </Link>
           </div>
