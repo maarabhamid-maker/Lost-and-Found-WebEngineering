@@ -18,6 +18,23 @@ export function Dashboard() {
 
   const user = JSON.parse(localStorage.getItem('user'))
 
+  const getUserName = (user) => {
+    if (!user) return 'User'
+    if (user.displayName) return user.displayName
+    if (user.name) return user.name
+    if (user.email) {
+      const namePart = user.email.split('@')[0]
+      return namePart
+        .replace(/[._]/g, ' ')
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ')
+    }
+    return 'User'
+  }
+
+  const greetingName = getUserName(user)
+
 useEffect(() => {
   if (!user) {
     navigate('/login')
@@ -151,48 +168,57 @@ const handleDelete = async (itemId) => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-serif font-bold mb-2">Your Dashboard</h1>
-        <p className="text-muted-foreground">Manage your lost and found items</p>
-      </div>
+    <div className="min-h-screen bg-[linear-gradient(135deg,_#0F172A_0%,_#073359_100%)] px-4 py-12">
+      <div className="mx-auto max-w-6xl">
+        {/* Header */}
+        <div className="mb-10">
+          <h1 className="text-5xl font-serif font-extrabold tracking-tight mb-2 text-white">
+            Hello, {greetingName}
+          </h1>
+          <p className="text-lg text-slate-300">Manage your lost and found items</p>
+        </div>
 
-      {/* Stats */}
-      <div className="grid md:grid-cols-3 gap-4 mb-8">
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Total Items</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{items.length}</div>
-            <p className="text-xs text-muted-foreground">
-              {items.filter(i => i.type === 'lost').length} lost,{' '}
-              {items.filter(i => i.type === 'found').length} found
-            </p>
-          </CardContent>
-        </Card>
+        {/* Stats */}
+        <div className="grid md:grid-cols-3 gap-5 mb-10">
+          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-[#157E90] to-[#0048A0] backdrop-blur-xl shadow-xl">
+            <CardHeader className="p-6 pb-4">
+              <CardTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-white opacity-90">
+                Total Items
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-6 pb-6 pt-0 text-white">
+              <div className="text-5xl font-bold">{items.length}</div>
+              <p className="mt-3 text-sm text-slate-100/85">
+                {items.filter(i => i.type === 'lost').length} lost,{' '}
+                {items.filter(i => i.type === 'found').length} found
+              </p>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Active Matches</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{matches.length}</div>
-            <p className="text-xs text-muted-foreground">Current matches</p>
-          </CardContent>
-        </Card>
+          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl shadow-xl">
+            <CardHeader className="p-6 pb-4">
+              <CardTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 opacity-90">
+                Active Matches
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-6 pb-6 pt-0 text-white">
+              <div className="text-5xl font-bold">{matches.length}</div>
+              <p className="mt-3 text-sm text-slate-100/85">Current matches</p>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Recovery Rate</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">72%</div>
-            <p className="text-xs text-muted-foreground">Community average</p>
-          </CardContent>
-        </Card>
-      </div>
+          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl shadow-xl">
+            <CardHeader className="p-6 pb-4">
+              <CardTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 opacity-90">
+                Recovery Rate
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="px-6 pb-6 pt-0 text-white">
+              <div className="text-5xl font-bold">72%</div>
+              <p className="mt-3 text-sm text-slate-100/85">Community average</p>
+            </CardContent>
+          </Card>
+        </div>
 
       {/* Tabs */}
       <Tabs defaultValue="items" className="space-y-6">
@@ -208,9 +234,9 @@ const handleDelete = async (itemId) => {
               <Loader2 className="w-8 h-8 animate-spin text-primary" />
             </div>
           ) : items.length === 0 ? (
-            <Card>
+            <Card className="border border-white/20 bg-white/10 backdrop-blur-xl shadow-xl text-white">
               <CardContent className="py-12 text-center">
-                <AlertCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-50" />
+                <AlertCircle className="w-12 h-12 text-white/60 mx-auto mb-4 opacity-70" />
                 <h3 className="font-semibold mb-2">No items yet</h3>
                 <p className="text-muted-foreground mb-6">
                   Start by reporting a lost or found item
@@ -223,7 +249,7 @@ const handleDelete = async (itemId) => {
           ) : (
             <div className="space-y-4">
               {items.map(item => (
-                <Card key={item.id}>
+                <Card key={item.id} className="border border-white/20 bg-white/10 backdrop-blur-xl shadow-xl text-white">
                   <CardContent className="py-4">
                     <div className="flex gap-4">
                       {item.image_url && (
@@ -283,9 +309,9 @@ const handleDelete = async (itemId) => {
               <Loader2 className="w-8 h-8 animate-spin text-primary" />
             </div>
           ) : matches.length === 0 ? (
-            <Card>
+            <Card className="border border-white/20 bg-white/10 backdrop-blur-xl shadow-xl text-white">
               <CardContent className="py-12 text-center">
-                <Heart className="w-12 h-12 text-muted-foreground mx-auto mb-4 opacity-50" />
+                <Heart className="w-12 h-12 text-white/70 mx-auto mb-4 opacity-80" />
                 <h3 className="font-semibold mb-2">No matches yet</h3>
                 <p className="text-muted-foreground">Matches will appear here when items are found</p>
               </CardContent>
@@ -307,14 +333,14 @@ const handleDelete = async (itemId) => {
                 }
 
                 return (
-                  <Card key={match.match_id}>
+                  <Card key={match.match_id} className="border border-white/20 bg-white/10 backdrop-blur-xl shadow-xl text-white">
                     <CardHeader>
   <div className="flex justify-between items-center">
     <div>
-      <CardTitle>Matched Item: {otherItem.title}</CardTitle>
-      <CardDescription>
+      <CardTitle className="text-white">Matched Item: {otherItem.title}</CardTitle>
+      <CardDescription className="text-slate-200/90">
         Your item: {myItem.title} | Status:{' '}
-        <span className={match.status === 'delivered' ? 'text-green-600 font-semibold' : 'text-yellow-600'}>
+        <span className={match.status === 'delivered' ? 'text-green-400 font-semibold' : 'text-yellow-300'}>
           {match.status}
         </span>{' '}
         | Similarity: {(match.similarity_score * 10).toFixed(0)}%
@@ -355,5 +381,6 @@ const handleDelete = async (itemId) => {
         </TabsContent>
       </Tabs>
     </div>
+  </div>
   )
 }
