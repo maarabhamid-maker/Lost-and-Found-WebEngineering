@@ -180,7 +180,7 @@ const handleDelete = async (itemId) => {
 
         {/* Stats */}
         <div className="grid md:grid-cols-3 gap-5 mb-10">
-          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-[#157E90] to-[#0048A0] backdrop-blur-xl shadow-xl">
+          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-[#157E90] to-[#0048A0] backdrop-blur-xl shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer">
             <CardHeader className="p-6 pb-4">
               <CardTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-white opacity-90">
                 Total Items
@@ -195,7 +195,7 @@ const handleDelete = async (itemId) => {
             </CardContent>
           </Card>
 
-          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl shadow-xl">
+          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-[#157E90] to-[#0048A0] backdrop-blur-xl shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer">
             <CardHeader className="p-6 pb-4">
               <CardTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 opacity-90">
                 Active Matches
@@ -207,7 +207,7 @@ const handleDelete = async (itemId) => {
             </CardContent>
           </Card>
 
-          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-xl shadow-xl">
+          <Card className="overflow-hidden border border-white/20 bg-gradient-to-br from-[#157E90] to-[#0048A0] backdrop-blur-xl shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer">
             <CardHeader className="p-6 pb-4">
               <CardTitle className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-100 opacity-90">
                 Recovery Rate
