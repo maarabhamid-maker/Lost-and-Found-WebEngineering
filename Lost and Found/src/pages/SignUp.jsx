@@ -140,7 +140,7 @@ const isValidPassword = (value) =>
               <label className="text-sm font-medium text-white">Username</label>
               <Input
                 type="text"
-                placeholder="Ali Ahsan"
+                placeholder="Maarab Hameed"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required

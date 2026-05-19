@@ -142,13 +142,15 @@ formData.append('contactPhone', normalizedPhone || '')
       setUploading(false)
     }
   }
-
-  return (
-    <div className="max-w-2xl mx-auto px-4 py-12">
-      <Card>
+return (
+  <div className="relative min-h-screen overflow-hidden bg-[#0a192f] py-12">
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(56,189,248,0.18),_transparent_22%),radial-gradient(circle_at_bottom_left,_rgba(14,165,233,0.12),_transparent_28%)]" />
+    <div className="pointer-events-none absolute inset-x-0 top-24 h-72 bg-white/5 blur-3xl" />
+    <div className="relative z-10 max-w-2xl mx-auto px-4">
+      <Card className="overflow-hidden border border-white/20 bg-white/10 backdrop-blur-2xl shadow-2xl shadow-slate-950/30">
         <CardHeader>
-          <CardTitle className="text-3xl">Report an Item</CardTitle>
-          <CardDescription>
+          <CardTitle className="text-3xl text-white">Report an Item</CardTitle>
+          <CardDescription className="text-white/70">
             Tell us about your lost or found item so we can help reunite it with its owner
           </CardDescription>
         </CardHeader>
@@ -158,11 +160,11 @@ formData.append('contactPhone', normalizedPhone || '')
             {/* Item Type & Category */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">Item Type</label>
+                <label className="text-sm font-medium mb-2 block text-white">Item Type</label>
                 <select
                   value={type}
                   onChange={(e) => setType(e.target.value)}
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background"
+                  className="w-full px-3 py-2 rounded-md border border-white/20 bg-white/10 text-white placeholder:text-white shadow-sm focus:border-white/30 focus:ring-1 focus:ring-white/20"
                 >
                   <option value="lost">Lost Item</option>
                   <option value="found">Found Item</option>
@@ -170,9 +172,9 @@ formData.append('contactPhone', normalizedPhone || '')
               </div>
 
               <div>
-                <label className="text-sm font-medium mb-2 block">Category</label>
+                <label className="text-sm font-medium mb-2 block text-white">Category</label>
                 <Select value={category} onValueChange={setCategory}>
-                  <SelectTrigger>
+                  <SelectTrigger className="rounded-md border border-white/20 bg-white/10 text-white placeholder:text-white focus:border-white/30 focus:ring-1 focus:ring-white/20">
                     <SelectValue placeholder="Select category" />
                   </SelectTrigger>
                   <SelectContent>
@@ -186,8 +188,9 @@ formData.append('contactPhone', normalizedPhone || '')
 
             {/* Title & Description */}
             <div>
-              <label className="text-sm font-medium mb-2 block">Item Title</label>
+              <label className="text-sm font-medium mb-2 block text-white">Item Title</label>
               <Input
+                className="text-white placeholder:text-white border-white/20 bg-white/10 focus-visible:ring-1 focus-visible:ring-white/20"
                 placeholder="e.g., Black iPhone 14 Pro"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -197,8 +200,9 @@ formData.append('contactPhone', normalizedPhone || '')
             </div>
 
             <div>
-              <label className="text-sm font-medium mb-2 block">Description</label>
+              <label className="text-sm font-medium mb-2 block text-white">Description</label>
               <Textarea
+                className="text-white placeholder:text-white border-white/20 bg-white/10 focus-visible:ring-1 focus-visible:ring-white/20"
                 placeholder="Describe distinguishing features, condition, brand, etc."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -211,8 +215,9 @@ formData.append('contactPhone', normalizedPhone || '')
             {/* Location & Date */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-sm font-medium mb-2 block">Location</label>
+                <label className="text-sm font-medium mb-2 block text-white">Location</label>
                 <Input
+                  className="text-white placeholder:text-white border-white/20 bg-white/10 focus-visible:ring-1 focus-visible:ring-white/20"
                   placeholder="Where was it lost/found?"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
@@ -221,8 +226,9 @@ formData.append('contactPhone', normalizedPhone || '')
                 />
               </div>
               <div>
-                <label className="text-sm font-medium mb-2 block">Date</label>
+                <label className="text-sm font-medium mb-2 block text-white">Date</label>
                 <Input
+                  className="text-white placeholder:text-white border-white/20 bg-white/10 focus-visible:ring-1 focus-visible:ring-white/20"
                   type="date"
                   value={itemDate}
                   onChange={(e) => setItemDate(e.target.value)}
@@ -234,8 +240,9 @@ formData.append('contactPhone', normalizedPhone || '')
 
             {/* Contact */}
             <div>
-              <label className="text-sm font-medium mb-2 block">Phone (Optional)</label>
+              <label className="text-sm font-medium mb-2 block text-white">Phone (Optional)</label>
               <Input
+                className="text-white placeholder:text-white border-white/20 bg-white/10 focus-visible:ring-1 focus-visible:ring-white/20"
                 type="tel"
                 placeholder="+92 333 2987234"
                 value={contactPhone}
@@ -287,6 +294,7 @@ formData.append('contactPhone', normalizedPhone || '')
           </form>
         </CardContent>
       </Card>
+    </div>
     </div>
   )
 }
