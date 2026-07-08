@@ -49,7 +49,7 @@ const confirmDelivered = async (matchId) => {
 
   try {
     const res = await fetch(
-      'http://localhost/lostfound/update_match_status.php',
+      'http://maarab.fwh.is/lostfound/update_match_status.php',
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -81,7 +81,7 @@ const hideMatch = async (matchId) => {
 
   try {
     const res = await fetch(
-      `http://localhost/lostfound/hide_match.php?match_id=${matchId}&user_id=${user.id}`
+      `http://maarab.fwh.is/lostfound/hide_match.php?match_id=${matchId}&user_id=${user.id}`
     )
 
     const data = await res.json()
@@ -254,7 +254,7 @@ const handleDelete = async (itemId) => {
                     <div className="flex gap-4">
                       {item.image_url && (
   <img
-    src={`http://localhost/lostfound/${item.image_url}`} // prepend backend URL
+    src={`http://maarab.fwh.ismaarab.fwh.is/lostfound/${item.image_url}`} // prepend backend URL
     alt={item.title}
     className="w-24 h-24 rounded-lg object-cover"
   />
