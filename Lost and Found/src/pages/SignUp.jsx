@@ -80,7 +80,7 @@ const isValidPassword = (value) =>
     setLoading(true)
 
     try {
-      const res = await fetch(getApiUrl('/signup.php'), {
+      const res = await fetch(getApiUrl('/api/signup.php'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
