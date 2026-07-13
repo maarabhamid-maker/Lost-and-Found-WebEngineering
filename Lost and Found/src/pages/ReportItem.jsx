@@ -1,3 +1,4 @@
+import { DashboardLayout } from '@/components/DashboardLayout'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getApiUrl } from '@/lib/api'

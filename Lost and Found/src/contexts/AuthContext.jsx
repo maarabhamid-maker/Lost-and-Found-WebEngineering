@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { getApiUrl } from '@/lib/api'
 
 const AuthContext = createContext(undefined)
@@ -61,10 +61,32 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const loginTestUser = () => {
+    const testUser = {
+      email: 'test@gmail.com',
+      username: 'Test User',
+      role: 'tester'
+    }
+
+    setUser(testUser)
+    localStorage.setItem('user', JSON.stringify(testUser))
+  }
+
   const signOut = () => {
     setUser(null)
     localStorage.removeItem('user')
   }
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user')
+    if (storedUser) {
+      try {
+        setUser(JSON.parse(storedUser))
+      } catch (error) {
+        console.error('Failed to parse stored user', error)
+      }
+    }
+  }, [])
 
   return (
     <AuthContext.Provider
@@ -74,6 +96,7 @@ export function AuthProvider({ children }) {
         isAuthenticated: !!user,
         signUp,
         signIn,
+        loginTestUser,
         signOut
       }}
     >

@@ -7,8 +7,12 @@ import { FAQ } from '@/pages/FAQ'
 import { Home } from '@/pages/Home'
 import { SignUp } from '@/pages/SignUp'
 import { SignIn } from '@/pages/SignIn'
-import { ReportItem } from '@/pages/ReportItem'
+import { ReportLostItem } from '@/pages/ReportLostItem'
+import { ReportFoundItem } from '@/pages/ReportFoundItem'
 import { Dashboard } from '@/pages/Dashboard'
+import { MyItems } from '@/pages/MyItems'
+import { Matches } from '@/pages/Matches'
+import { Profile } from '@/pages/Profile'
 import { Loader2 } from 'lucide-react'
 
 function ProtectedRoute({ children }) {
@@ -35,8 +39,12 @@ function AppContent() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<SignIn />} />
-          <Route path="/report" element={<ProtectedRoute><ReportItem /></ProtectedRoute>} />
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/my-items" element={<ProtectedRoute><MyItems /></ProtectedRoute>} />
+          <Route path="/matches" element={<ProtectedRoute><Matches /></ProtectedRoute>} />
+          <Route path="/report-lost" element={<ProtectedRoute><ReportLostItem /></ProtectedRoute>} />
+          <Route path="/report-found" element={<ProtectedRoute><ReportFoundItem /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         </Routes>
       </main>
       <Footer />
